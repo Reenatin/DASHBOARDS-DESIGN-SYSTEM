@@ -3,22 +3,25 @@ import {GraficoLinhaTransferencias,type TemaTransferencias} from "../componentes
 import {GraficoLinhaVolume} from "../componentes/grafico-linha-volume/GraficoLinhaVolume";
 import {TransferenciasPorCanal} from "../componentes/transferencias-por-canal/TransferenciasPorCanal";
 import {VolumetriaMonitoramento} from "../componentes/volumetria-monitoramento/VolumetriaMonitoramento";
+import {AthMonitoramento} from "../componentes/ath-monitoramento/AthMonitoramento";
 import {periodoMock,seriesMock} from "../mock/transferencias";
 import {periodoVolumeMock,periodoVolumeMensalMock,seriesVolumeDiaMock,seriesVolumeMesMock} from "../mock/volume";
 import {seriesCanaisMock} from "../mock/canais";
 import {volumeMonitoramentoMock,volumeMonitoramentoLacunasMock} from "../mock/monitoramento-volume";
+import {athMonitoramentoMock,athMonitoramentoLacunasMock,limiteAthMock} from "../mock/monitoramento-ath";
 import "./app.css";
 
-type Modelo="transferencias"|"volume"|"canais"|"monitoramento-volume";
+type Modelo="transferencias"|"volume"|"canais"|"monitoramento-volume"|"monitoramento-ath";
 export default function App(){
   const [tema,setTema]=useState<TemaTransferencias>("light");
-  const [modelo,setModelo]=useState<Modelo>("monitoramento-volume");
+  const [modelo,setModelo]=useState<Modelo>("monitoramento-ath");
   const [mensal,setMensal]=useState(false);
   const [lacunas,setLacunas]=useState(false);
   return <main className="preview" data-theme={tema}>
     <div className="preview-header"><div>
       <small>DESIGN SYSTEM · CÓDIGO REAL · DEMONSTRAÇÃO COM MOCK</small>
-      <h1>{modelo==="monitoramento-volume"?"Gráfico de Linha — Volumetria do Monitoramento":
+      <h1>{modelo==="monitoramento-ath"?"Gráfico de Linha — ATH do Monitoramento":
+        modelo==="monitoramento-volume"?"Gráfico de Linha — Volumetria do Monitoramento":
         modelo==="volume"?"Gráfico de Linha — Evolução do Volume":
         modelo==="canais"?"Gráfico de Barras — Transferências por Canal":"Gráfico de Linha — Transferências"}</h1>
       <p>Prévia em React/TSX com dados sintéticos externos. Os componentes não contêm mocks.</p>
@@ -26,6 +29,8 @@ export default function App(){
       {tema==="light"?"Ativar tema escuro":"Ativar tema claro"}
     </button></div>
     <nav className="preview-modelos" aria-label="Modelos visuais">
+      <button type="button" className={modelo==="monitoramento-ath"?"ativo":""} aria-pressed={modelo==="monitoramento-ath"}
+        onClick={()=>setModelo("monitoramento-ath")}>ATH · Monitoramento · Etapa 5</button>
       <button type="button" className={modelo==="monitoramento-volume"?"ativo":""} aria-pressed={modelo==="monitoramento-volume"}
         onClick={()=>setModelo("monitoramento-volume")}>Volumetria · Monitoramento · Etapa 4</button>
       <button type="button" className={modelo==="canais"?"ativo":""} aria-pressed={modelo==="canais"}
@@ -34,7 +39,7 @@ export default function App(){
         onClick={()=>setModelo("volume")}>Evolução do Volume · Etapa 2</button>
       <button type="button" className={modelo==="transferencias"?"ativo":""} aria-pressed={modelo==="transferencias"}
         onClick={()=>setModelo("transferencias")}>Transferências · Etapa 1</button>
-      {modelo==="monitoramento-volume"&&<div className="preview-periodos" role="group" aria-label="Amostra do monitoramento">
+      {(modelo==="monitoramento-volume"||modelo==="monitoramento-ath")&&<div className="preview-periodos" role="group" aria-label="Amostra do monitoramento">
         <button type="button" className={!lacunas?"ativo":""} aria-pressed={!lacunas} onClick={()=>setLacunas(false)}>Dia completo</button>
         <button type="button" className={lacunas?"ativo":""} aria-pressed={lacunas} onClick={()=>setLacunas(true)}>Com lacunas</button>
       </div>}
@@ -43,7 +48,9 @@ export default function App(){
         <button type="button" className={mensal?"ativo":""} aria-pressed={mensal} onClick={()=>setMensal(true)}>Vários dias</button>
       </div>}
     </nav>
-    <div className={`preview-area ${modelo==="canais"?"preview-area--canais":modelo==="monitoramento-volume"?"preview-area--monitoramento":""}`}>{modelo==="monitoramento-volume"?
+    <div className={`preview-area ${modelo==="canais"?"preview-area--canais":(modelo==="monitoramento-volume"||modelo==="monitoramento-ath")?"preview-area--monitoramento":""}`}>{modelo==="monitoramento-ath"?
+      <AthMonitoramento pontos={lacunas?athMonitoramentoLacunasMock:athMonitoramentoMock}
+        limiteDiario={limiteAthMock} tema={tema}/>:modelo==="monitoramento-volume"?
       <VolumetriaMonitoramento pontos={lacunas?volumeMonitoramentoLacunasMock:volumeMonitoramentoMock} tema={tema}/>:modelo==="canais"?
       <TransferenciasPorCanal series={seriesCanaisMock} tema={tema} origemInicial="ura"/>:
       modelo==="volume"?
@@ -51,7 +58,8 @@ export default function App(){
         periodo={mensal?periodoVolumeMensalMock:periodoVolumeMock} tema={tema} origemInicial="ura"/>:
       <GraficoLinhaTransferencias series={seriesMock} periodo={periodoMock} tema={tema} origemInicial="ura"/>}
     </div>
-    <footer>{modelo==="monitoramento-volume"?
+    <footer>{modelo==="monitoramento-ath"?
+      "ATH acumulado por hora: limite visual 45%, trecho vermelho somente acima, madrugada como último acumulado; sem calcular alarmística. Teste hover e foco.":modelo==="monitoramento-volume"?
       "Volumetria horária do Monitoramento: madrugada agrupada somente na visualização, sem preencher BLANK nem horários ausentes. Teste o hover e o foco.":modelo==="canais"?
       "Card: barras horizontais e rolagem vertical. Foco: colunas e rolagem horizontal. Alternar URA/IAM e tema.":
       "Alterne URA/IAM, passe o mouse nos marcadores e abra o modo foco."}</footer>
