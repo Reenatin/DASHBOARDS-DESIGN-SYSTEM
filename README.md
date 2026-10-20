@@ -14,7 +14,7 @@ A demo no StackBlitz recebe dados sintéticos externos; nenhum componente consul
 O modelo preserva comportamento do ECharts e não consulta dados do cliente. Consulte a
 [referência técnica](docs/feat/01-grafico-linha-transferencias/referencia-tecnica.md) antes de integrar.
 
-## Modelo 02 — Etapa 2 (ZIP incremental, homologação pendente)
+## Modelo 02 — Etapa 2 (publicado e homologado em 20/10/2026)
 
 `componentes/grafico-linha-volume/` reúne um TSX e CSS do gráfico **Evolução do Volume URA/IAM**. Animação preservada: a linha/área surge inteira e os marcadores aparecem depois, com cancelamento em alternâncias rápidas. Tooltip original sem linha Recebidas duplicada, guia pontilhada, foco, claro/escuro e responsividade.
 
@@ -22,7 +22,7 @@ A prévia React oferece seletor de modelo; na Etapa 2 também alterna o mock **D
 
 ### Visualização no StackBlitz
 
-O repositório público é acessível no [StackBlitz](https://stackblitz.com/github/Reenatin/DASHBOARDS-DESIGN-SYSTEM). O segundo gráfico aparecerá após a publicação/autorização da Etapa 2.
+O repositório público é acessível no [StackBlitz](https://stackblitz.com/github/Reenatin/DASHBOARDS-DESIGN-SYSTEM). Os componentes publicados aparecem no catálogo; o terceiro modelo requer publicação e homologação.
 No ambiente do projeto, o `npm run dev` inicia a prévia React; `npm run build` valida e compila.
 Para uso local: `npm install`, `npm run dev`; para verificações: `npm run typecheck`, `npm test`, `npm run build`.
 
@@ -44,4 +44,18 @@ não equivale a autorização de redistribuição. A fonte Circular Air Pro prec
 licenciada/instalada no dashboard que a utilizar; esta prévia usa fallback.
 
 O Trello controla etapas e histórico, o GitHub o código efetivamente publicado. Neste ZIP:
-**apenas arquivos novos/alterados da Etapa 2; a Etapa 1 permanece inalterada em seu TSX/CSS.**
+**somente arquivos novos/alterados da Etapa 3; os TSX/CSS homologados das Etapas 1 e 2 permanecem intactos.**
+
+## Modelo 03 — Etapa 3 (entrega incremental, aguardando homologação)
+
+`componentes/transferencias-por-canal/` adiciona o modelo **Transferências por Canal**
+com o código TSX/ECharts e CSS isolados da release YDUQS v1.0.0. O card tem barras
+horizontais de 18px e rolagem vertical; o foco apresenta colunas e rolagem
+horizontal. O tooltip HTML usa `appendTo: "body"` para não ser recortado.
+O seletor URA/IAM e os temas são independentes dos gráficos anteriores.
+
+O componente recebe por `series` um ranking por solução e o total transferido
+naquela solução; `participacao` já deve estar calculada como fração pelo adaptador
+externo. `mock/canais.ts` é apenas dado fictício. Consulte
+[docs/feat/03-transferencias-por-canal/](docs/feat/03-transferencias-por-canal/README.md).
+**Etapas 1 e 2 permanecem publicadas e homologadas, sem alterações em seus TSX/CSS.**

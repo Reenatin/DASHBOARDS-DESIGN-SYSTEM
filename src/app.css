@@ -22,3 +22,8 @@ body {font-family:Arial,"Segoe UI",sans-serif;}
 .preview-periodos {margin-left:auto;display:flex;gap:5px;}
 .preview-periodos button {font-size:11px;padding:7px 12px;}
 @media(max-width:620px) {.preview-modelos {margin-top:-15px;}.preview-periodos {width:100%;margin:2px 0 0;}}
+/* Etapa 3: estilos do catálogo permanecem independentes dos próprios gráficos. */
+.preview-modelos {row-gap:9px;}
+
+/* O terceiro card YDUQS ocupa uma coluna mais estreita na grade original. */
+.preview-area--canais {max-width:420px;}
