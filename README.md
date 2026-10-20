@@ -22,7 +22,7 @@ A prévia React oferece seletor de modelo; na Etapa 2 também alterna o mock **D
 
 ### Visualização no StackBlitz
 
-O repositório público é acessível no [StackBlitz](https://stackblitz.com/github/Reenatin/DASHBOARDS-DESIGN-SYSTEM). **Os cinco modelos estão publicados**. As Etapas 1–4 foram homologadas pelo usuário; a Etapa 5 está publicada, com validação visual inicial no tema claro e homologação integral ainda pendente.
+O repositório público é acessível no [StackBlitz](https://stackblitz.com/github/Reenatin/DASHBOARDS-DESIGN-SYSTEM). **Os cinco modelos estão publicados**. As cinco etapas foram publicadas e homologadas visualmente pelo usuário em 20/10/2026. A Etapa 5 teve aprovação expressa após validação dos cenários Dia completo/tema claro e Com lacunas/tema escuro.
 No ambiente do projeto, o `npm run dev` inicia a prévia React; `npm run build` valida e compila.
 Para uso local: `npm install`, `npm run dev`; para verificações: `npm run typecheck`, `npm test`, `npm run build`.
 
@@ -68,10 +68,10 @@ externo. `mock/canais.ts` é apenas dado fictício. Consulte
 O próprio TSX abre foco e possui escopos CSS claros/escuros. A Etapa 4 foi publicada no commit `cd08e6183f480384531725946126e7bbe1a5ae9c` e homologada pelo usuário nos temas claro/escuro, card/foco, tooltip/guia e lacunas. Testes 49/49, typecheck e build foram aprovados no Windows. Etapas 1–3 permaneceram intactas em seus TSX/CSS. [Documentação](docs/feat/04-grafico-volumetria-monitoramento/README.md).
 
 
-## Modelo 05 — Etapa 5 (publicado; homologação visual integral pendente)
+## Modelo 05 — Etapa 5 (publicado e homologado em 20/10/2026)
 
 `componentes/ath-monitoramento/` contém `AthMonitoramento.tsx` e CSS isolado do gráfico **ATH acumulado por hora** da TV YDUQS v1.0.0: área azul até o limite visual recebido, excesso vermelho acima de 45% no mock, linha segmentada exatamente no cruzamento, marcador 8px (12px na madrugada), limite tracejado, tooltip PAN com acumulados e situação já calculados, guia pontilhada, foco, temas claro/escuro e estados vazios. A madrugada é representada pelo **último acumulado válido recebido até 06h** e não é uma média nem soma de percentuais.
 
 A fonte de dados e o limite diário são propriedades externas: `pontos: HoraAth[]`, `limiteDiario: number` como fração (mock `0.45`), `tema`, `carregando`/`erro`. Não há chamadas ao Power BI, cálculos de alarmística nem dados reais de cliente. A demo usa `mock/monitoramento-ath.ts` com **Dia completo** e **Com lacunas**. [Documentação da funcionalidade 05](docs/feat/05-grafico-ath-monitoramento/README.md).
 
-**Publicação auditada:** a Etapa 5 e a atualização documental da Etapa 4 foram publicadas na `main` no commit [`e67b6cf`](https://github.com/Reenatin/DASHBOARDS-DESIGN-SYSTEM/commit/e67b6cf648985aaab75f4359a7db075ae59a61e6) (parent `cd08e6183f480384531725946126e7bbe1a5ae9c`), com 11 arquivos previstos, typecheck, 67/67 testes e build aprovados no Windows; sem checks remotos configurados. Não houve alteração nos TSX/CSS homologados das Etapas 1–4. A homologação visual integral da Etapa 5 ainda depende da confirmação do usuário para tema escuro, foco, hover e lacunas.
+**Publicação auditada:** a Etapa 5 e a atualização documental da Etapa 4 foram publicadas na `main` no commit [`e67b6cf`](https://github.com/Reenatin/DASHBOARDS-DESIGN-SYSTEM/commit/e67b6cf648985aaab75f4359a7db075ae59a61e6) (parent `cd08e6183f480384531725946126e7bbe1a5ae9c`), com 11 arquivos previstos, typecheck, 67/67 testes e build aprovados no Windows; sem checks remotos configurados. Não houve alteração nos TSX/CSS homologados das Etapas 1–4. A homologação visual do ATH foi aprovada expressamente pelo usuário em 20/10/2026. Os registros incluem os cenários Dia completo/tema claro e Com lacunas/tema escuro. As evidências e decisões estão registradas no Trello.
