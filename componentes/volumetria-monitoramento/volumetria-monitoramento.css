@@ -1,0 +1,95 @@
+/* Etapa 4 — recorte do gráfico Monitoramento TV YDUQS v1.0.0.
+   Somente ds-mv: não interfere nos modelos homologados anteriores. */
+.ds-mv-root {
+  --ds-mv-ink:#0d1317;--ds-mv-soft:#697687;--ds-mv-muted:#8994a0;
+  --ds-mv-surface:#fff;--ds-mv-surface-2:#f8fafb;
+  --ds-mv-border:#e5e8eb;--ds-mv-border-strong:#d4d9de;
+  --ds-mv-shadow:0 16px 38px rgba(13,19,23,.07);
+  --ds-mv-primary:#01ABBD;--ds-mv-strong:#007E8D;--ds-mv-outline:#01ABBD;
+  --ds-mv-hover:rgba(1,171,189,.16);
+  font-family:"Circular Air Pro",Arial,"Segoe UI",sans-serif;
+  color:var(--ds-mv-ink);min-width:0;box-sizing:border-box;
+}
+.ds-mv-root *,.ds-mv-root *::before,.ds-mv-root *::after{box-sizing:border-box;}
+.ds-mv-root[data-theme="dark"]{
+  --ds-mv-ink:#f2f5fb;--ds-mv-soft:#aebbd0;--ds-mv-muted:#8395ad;
+  --ds-mv-surface:#122236;--ds-mv-surface-2:#1b2c42;
+  --ds-mv-border:#34475a;--ds-mv-border-strong:#45566a;
+  --ds-mv-shadow:0 16px 38px rgba(0,0,0,.20);
+  --ds-mv-strong:#65d4dd;--ds-mv-outline:#4caeba;--ds-mv-hover:rgba(1,171,189,.23);
+}
+.ds-mv-root button{font:inherit;color:inherit;}
+.ds-mv-root button:focus-visible{outline:2px solid #01ABBD;outline-offset:2px;}
+/* Gráfico da TV: cabeçalho, sublinha, visual 225px+ e nota como MonitoramentoCard. */
+.ds-mv-card{width:100%;min-width:0;height:400px;padding:18px 22px 16px;
+  display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid var(--ds-mv-border);border-radius:28px;
+  background:radial-gradient(circle at 100% 0%,rgba(1,171,189,.09),transparent 35%),var(--ds-mv-surface);
+  box-shadow:var(--ds-mv-shadow);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.ds-mv-card:hover{transform:translateY(-2px);border-color:var(--ds-mv-outline);
+  box-shadow:0 18px 42px var(--ds-mv-hover);}
+.ds-mv-header{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:14px;min-height:63px;flex:0 0 auto;}
+.ds-mv-header>div{min-width:0;}
+.ds-mv-kicker{color:var(--ds-mv-strong);font-size:10px;line-height:1;
+  letter-spacing:.17em;font-weight:800;}
+.ds-mv-header h2{margin:8px 0 0;font-size:17px;line-height:1.2;
+  font-weight:800;letter-spacing:-.25px;}
+.ds-mv-botao-foco{width:34px;height:34px;flex:0 0 34px;display:grid;
+  place-items:center;padding:0;border:1px solid var(--ds-mv-border);
+  border-radius:10px;background:var(--ds-mv-surface-2);
+  color:var(--ds-mv-soft)!important;cursor:pointer;transition:.18s ease;}
+.ds-mv-botao-foco svg{width:17px;height:17px;fill:none;stroke:currentColor;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.ds-mv-botao-foco:hover{color:var(--ds-mv-strong)!important;
+  border-color:var(--ds-mv-outline);background:rgba(1,171,189,.12);
+  transform:translateY(-1px);box-shadow:0 8px 18px var(--ds-mv-hover);}
+.ds-mv-corpo{flex:1 1 0;min-height:0;min-width:0;display:flex;
+  padding-top:13px;border-top:1px solid var(--ds-mv-border);}
+.ds-mv-echart{flex:1 1 0;min-width:0;min-height:0;width:100%;height:100%;}
+.ds-mv-vazio{display:grid;place-items:center;flex:1 1 auto;min-height:160px;
+  padding:10px;text-align:center;color:var(--ds-mv-soft);font-size:12px;}
+.ds-mv-nota{flex:0 0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;
+  gap:8px;margin-top:7px;color:var(--ds-mv-soft);font-size:10px;line-height:1.4;}
+.ds-mv-referencia{font-weight:750;}
+/* PAN FocusModal: mesmo cabeçalho e dimensões dos modelos anteriores. */
+.ds-mv-backdrop{position:fixed;inset:0;z-index:1500;padding:clamp(8px,1.8vh,20px);
+  display:grid;place-items:center;background:rgba(13,19,23,.45);
+  backdrop-filter:blur(12px) saturate(.92);-webkit-backdrop-filter:blur(12px) saturate(.92);
+  animation:ds-mv-fade .18s ease both;}
+.ds-mv-modal{width:min(1540px,97vw);height:min(840px,94vh);min-height:0;
+  display:flex;flex-direction:column;overflow:hidden;
+  border:1px solid var(--ds-mv-border-strong);border-radius:24px;
+  background:var(--ds-mv-surface);box-shadow:0 36px 100px rgba(13,19,23,.3);
+  animation:ds-mv-in .23s cubic-bezier(.2,.8,.2,1) both;}
+.ds-mv-modal-head{flex:0 0 auto;min-height:62px;display:flex;align-items:center;
+  justify-content:space-between;gap:18px;padding:11px 18px 10px;
+  border-bottom:1px solid var(--ds-mv-border);
+  background:linear-gradient(90deg,rgba(1,171,189,.09),rgba(1,171,189,.025),transparent 68%),var(--ds-mv-surface);}
+.ds-mv-modal-head h2{margin:4px 0 0;font-size:19px;line-height:1.1;letter-spacing:-.35px;}
+.ds-mv-modal-head p{margin:3px 0 0;color:var(--ds-mv-soft);font-size:9px;}
+.ds-mv-fechar{width:38px;height:38px;flex:0 0 38px;padding:0;
+  display:grid;place-items:center;border:1px solid var(--ds-mv-border);
+  border-radius:50%;background:var(--ds-mv-surface-2);cursor:pointer;font-size:25px!important;}
+.ds-mv-fechar:hover{border-color:var(--ds-mv-outline);background:rgba(1,171,189,.12);}
+.ds-mv-modal-corpo{display:flex;flex:1 1 0;min-height:0;min-width:0;padding:clamp(10px,2vw,28px);}
+.ds-mv-modal-grafico{flex:1 1 0;display:flex;flex-direction:column;min-height:0;min-width:0;}
+.ds-mv-modal-grafico .ds-mv-echart{min-height:0;}
+@keyframes ds-mv-fade{from{opacity:0}to{opacity:1}}
+@keyframes ds-mv-in{from{opacity:.5;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+@media(max-width:620px){
+  .ds-mv-card{height:370px;padding:16px 14px;border-radius:24px;}
+  .ds-mv-header h2{font-size:15px;}
+  .ds-mv-nota{font-size:9px;}
+  .ds-mv-backdrop{padding:8px;}
+  .ds-mv-modal{width:100%;height:min(95vh,840px);border-radius:18px;}
+  .ds-mv-modal-head{padding:12px;gap:8px;}
+  .ds-mv-modal-head h2{font-size:16px;}
+  .ds-mv-modal-corpo{padding:12px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .ds-mv-card,.ds-mv-botao-foco{transition:none;}
+  .ds-mv-backdrop,.ds-mv-modal{animation:none;}
+}

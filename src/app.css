@@ -27,3 +27,6 @@ body {font-family:Arial,"Segoe UI",sans-serif;}
 
 /* O terceiro card YDUQS ocupa uma coluna mais estreita na grade original. */
 .preview-area--canais {max-width:420px;}
+
+/* Prévia da TV em largura própria; não altera os componentes. */
+.preview-area--monitoramento{max-width:650px;}
