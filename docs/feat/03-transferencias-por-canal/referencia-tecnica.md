@@ -15,6 +15,8 @@ A implementação principal consolida as opções visuais publicadas na tag **YD
 
 **Foco:** colunas com largura máxima 72px, gradiente vertical forte em cima, eixo X inclinado 26° e rótulos truncados após 22 caracteres, barra com cantos superiores 9px. Gráfico rola horizontalmente, largura mínima `max(640, canais * 82)`; o modal adapta a 97vw / 94vh até 1540x840.
 
+**Hotfix visual da Etapa 3 (tema escuro):** nas barras horizontais, gradiente da esquerda em `#84DCE5` para `#01ABBD` à direita; nas colunas do foco, `#01ABBD` no topo para `#84DCE5` na base. Tema claro continua com `#BDEEF2`/`#01ABBD` e orientação original. Os contêineres `.ds-tc-card-scroll` e `.ds-tc-foco-scroll` recebem trilho `#1B2C42` e polegar `#627F96` **somente quando `data-theme="dark"`**, com `scrollbar-color`/`color-scheme` e fallback `::-webkit-scrollbar`; sentidos, espessura das barras, valores e ordenação não mudam. Não altera o CSS de outros modelos.
+
 **Tooltip:** PAN (raio 20px, padding 11/14, sombras originais), `renderMode:'html'`, `appendTo:'body'` e `confine:false`; não é cortado pela rolagem. Exibe nome escapado, transferidas, recebidas, representatividade e denominador da solução. Tema claro/escuro mantém contraste. ECharts 6 / React 19, sem imagem, logo ou fonte comercial embutida.
 
 ## Contrato externo

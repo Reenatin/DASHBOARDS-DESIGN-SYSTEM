@@ -124,3 +124,43 @@ test("catálogo oferece terceiro gráfico sem substituir TSX dos modelos anterio
     "seriesCanaisMock","modelo===\"canais\""])
     assert.ok(app.includes(token),token);
 });
+
+// Hotfix visual Etapa 3: reproduzir o problema reportado nos prints,
+// sem redesenhar os gráficos e sem alterar o tema claro homologado.
+test("hotfix: gradiente escuro visível no card e no foco, com direção preservada",()=>{
+  const cardEscuro=opcoesTransferenciasPorCanal(ranking,200,true,false);
+  const focoEscuro=opcoesTransferenciasPorCanal(ranking,200,true,true);
+  const cardClaro=opCard();
+  const focoClaro=opFoco();
+  const horizontal=cardEscuro.series[0].itemStyle.color;
+  const vertical=focoEscuro.series[0].itemStyle.color;
+  assert.equal(horizontal.x2,1);
+  assert.equal(horizontal.y2,0);
+  assert.equal(horizontal.colorStops[0].color,"#84DCE5");
+  assert.equal(horizontal.colorStops[1].color,"#01ABBD");
+  assert.equal(vertical.x2,0);
+  assert.equal(vertical.y2,1);
+  assert.equal(vertical.colorStops[0].color,"#01ABBD");
+  assert.equal(vertical.colorStops[1].color,"#84DCE5");
+  assert.equal(cardClaro.series[0].itemStyle.color.colorStops[0].color,"#BDEEF2");
+  assert.equal(focoClaro.series[0].itemStyle.color.colorStops[1].color,"#BDEEF2");
+  assert.deepEqual(Array.from(cardEscuro.series[0].data),Array.from(cardClaro.series[0].data));
+  assert.deepEqual(Array.from(focoEscuro.series[0].data),Array.from(focoClaro.series[0].data));
+});
+
+test("hotfix: scrollbars escuros em ambos os sentidos, com Firefox/WebKit e CSS restrito ao componente",()=>{
+  const css=fs.readFileSync(path.join(raiz,"componentes/transferencias-por-canal/transferencias-por-canal.css"),"utf8");
+  for(const classe of ["ds-tc-card-scroll","ds-tc-foco-scroll"]){
+    assert.ok(css.includes(`.ds-tc-root[data-theme="dark"] .${classe}`),classe);
+    for(const pseudo of ["::-webkit-scrollbar", "::-webkit-scrollbar-track",
+      "::-webkit-scrollbar-thumb", "::-webkit-scrollbar-thumb:hover"]){
+      assert.ok(css.includes(`.ds-tc-root[data-theme="dark"] .${classe}${pseudo}`),`${classe}${pseudo}`);
+    }
+  }
+  assert.match(css,/scrollbar-color:\s*#627F96\s+#1B2C42/);
+  assert.match(css,/color-scheme:\s*dark/);
+  assert.match(css,/\.ds-tc-card-scroll\s*\{[^}]*overflow-y:auto;overflow-x:hidden/s);
+  assert.match(css,/\.ds-tc-foco-scroll\s*\{[^}]*overflow-x:auto;overflow-y:hidden/s);
+  assert.ok(!css.includes(".ds-tf-"));
+  assert.ok(!css.includes(".ds-vl-"));
+});

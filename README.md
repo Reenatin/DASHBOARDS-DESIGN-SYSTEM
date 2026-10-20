@@ -22,7 +22,7 @@ A prévia React oferece seletor de modelo; na Etapa 2 também alterna o mock **D
 
 ### Visualização no StackBlitz
 
-O repositório público é acessível no [StackBlitz](https://stackblitz.com/github/Reenatin/DASHBOARDS-DESIGN-SYSTEM). Os componentes publicados aparecem no catálogo; o terceiro modelo requer publicação e homologação.
+O repositório público é acessível no [StackBlitz](https://stackblitz.com/github/Reenatin/DASHBOARDS-DESIGN-SYSTEM). Os três modelos publicados aparecem no catálogo; a Etapa 3 possui um hotfix visual pendente de publicação e homologação.
 No ambiente do projeto, o `npm run dev` inicia a prévia React; `npm run build` valida e compila.
 Para uso local: `npm install`, `npm run dev`; para verificações: `npm run typecheck`, `npm test`, `npm run build`.
 
@@ -43,15 +43,16 @@ segredos, endpoints, imagens de clientes nem binários de fontes, mas ausência 
 não equivale a autorização de redistribuição. A fonte Circular Air Pro precisa estar
 licenciada/instalada no dashboard que a utilizar; esta prévia usa fallback.
 
-O Trello controla etapas e histórico, o GitHub o código efetivamente publicado. Neste ZIP:
-**somente arquivos novos/alterados da Etapa 3; os TSX/CSS homologados das Etapas 1 e 2 permanecem intactos.**
+O Trello controla etapas e histórico, o GitHub o código efetivamente publicado.
+Os hotfixes visuais da Etapa 3 são documentados no Trello; os TSX/CSS das Etapas 1 e 2 permanecem intactos.
 
-## Modelo 03 — Etapa 3 (entrega incremental, aguardando homologação)
+## Modelo 03 — Etapa 3 (publicado; hotfix de tema escuro em homologação)
 
 `componentes/transferencias-por-canal/` adiciona o modelo **Transferências por Canal**
 com o código TSX/ECharts e CSS isolados da release YDUQS v1.0.0. O card tem barras
 horizontais de 18px e rolagem vertical; o foco apresenta colunas e rolagem
 horizontal. O tooltip HTML usa `appendTo: "body"` para não ser recortado.
+O hotfix desta etapa intensifica o gradiente no tema escuro (card e foco) e aplica rolagem escura nos dois contêineres, sem mudar dados ou o tema claro.
 O seletor URA/IAM e os temas são independentes dos gráficos anteriores.
 
 O componente recebe por `series` um ranking por solução e o total transferido

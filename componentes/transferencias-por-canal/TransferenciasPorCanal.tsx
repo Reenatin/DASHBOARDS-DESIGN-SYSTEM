@@ -75,9 +75,9 @@ export function opcoesTransferenciasPorCanal(
   const eixo=escuro?"rgba(174,187,208,.24)":"#DFE5EB";
   const gradiente=foco
     ?{type:"linear" as const,x:0,y:0,x2:0,y2:1,
-      colorStops:[{offset:0,color:cor},{offset:1,color:escuro?"#399AA7":"#BDEEF2"}]}
+      colorStops:[{offset:0,color:cor},{offset:1,color:escuro?"#84DCE5":"#BDEEF2"}]}
     :{type:"linear" as const,x:0,y:0,x2:1,y2:0,
-      colorStops:[{offset:0,color:escuro?"#399AA7":"#BDEEF2"},{offset:1,color:cor}]};
+      colorStops:[{offset:0,color:escuro?"#84DCE5":"#BDEEF2"},{offset:1,color:cor}]};
   const texto=(index:number)=>{
     const linha=ranking[index];return linha?tooltipCanal(linha,denominador):"";
   };
