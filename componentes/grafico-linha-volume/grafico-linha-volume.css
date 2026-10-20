@@ -1,0 +1,104 @@
+/* Recorte isolado dos estilos YDUQS v1.0.0 para Evolução do Volume (styles.css).
+   Escopo ds-vl evita colisão com CSS de outros dashboards. */
+.ds-vl-root {
+  --ds-primary:#01ABBD; --ds-strong:#007E8D;
+  --ds-ink:#0d1317; --ds-text:#252d35; --ds-muted:#8994a0;
+  --ds-soft:#697687; --ds-surface:#fff; --ds-surface-2:#f8fafb;
+  --ds-border:#e5e8eb; --ds-border-strong:#d4d9de;
+  --ds-shadow:0 16px 38px rgba(13,19,23,.07);
+  --ds-hover-outline:#01ABBD; --ds-hover-shadow:rgba(1,171,189,.16);
+  font-family:"Circular Air Pro",Arial,"Segoe UI",sans-serif;
+  color:var(--ds-ink); box-sizing:border-box; min-width:0;
+}
+.ds-vl-root *, .ds-vl-root *::before, .ds-vl-root *::after {box-sizing:border-box;}
+.ds-vl-root[data-theme="dark"] {
+  --ds-ink:#f2f5fb; --ds-text:#e9eef7; --ds-soft:#aebbd0;
+  --ds-muted:#8395ad; --ds-surface:#122236; --ds-surface-2:#1b2c42;
+  --ds-border:#34475a; --ds-border-strong:#45566a;
+  --ds-shadow:0 16px 38px rgba(0,0,0,.2);
+  --ds-strong:#65d4dd;
+  --ds-hover-outline:#4caeba; --ds-hover-shadow:rgba(1,171,189,.23);
+}
+.ds-vl-root button {font:inherit;color:inherit;}
+.ds-vl-root button:focus-visible {outline:2px solid #01ABBD;outline-offset:2px;}
+/* PAN/YDUQS: height 300, padding 18/22/16, radius 28, header 52. */
+.ds-vl-card {height:300px;min-width:0;padding:18px 22px 16px;
+  overflow:hidden;display:flex;flex-direction:column;
+  border:1px solid var(--ds-border);border-radius:28px;
+  background:var(--ds-surface);box-shadow:var(--ds-shadow);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.ds-vl-card:hover {transform:translateY(-2px);border-color:var(--ds-hover-outline);
+  box-shadow:0 18px 42px var(--ds-hover-shadow);}
+.ds-vl-cabecalho {display:flex;align-items:flex-start;justify-content:space-between;
+  gap:14px;min-height:52px;flex:0 0 auto;}
+.ds-vl-titulo {min-width:0;}
+.ds-vl-kicker {color:var(--ds-strong);font-size:10px;line-height:1;
+  letter-spacing:.17em;font-weight:800;}
+.ds-vl-cabecalho h2 {margin:7px 0 0;font-size:17px;line-height:1.2;font-weight:800;letter-spacing:-.25px;}
+.ds-vl-acoes,.ds-vl-modal-acoes {display:flex;align-items:center;justify-content:flex-end;
+  gap:9px;flex:0 0 auto;}
+.ds-vl-corpo {flex:1 1 0;min-height:0;height:auto;display:flex;overflow:hidden;}
+.ds-vl-echart {width:100%;height:100%;min-width:0;min-height:0;}
+.ds-vl-vazio {display:grid;place-items:center;min-height:160px;flex:1 1 auto;
+  text-align:center;color:var(--ds-soft);font-size:12px;}
+.ds-vl-seletor {display:inline-flex;align-items:center;gap:4px;padding:4px;
+  border:1px solid var(--ds-border);border-radius:999px;background:rgba(255,255,255,.62);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75);}
+.ds-vl-opcao {min-width:54px;height:30px;padding:0 13px;border:0;border-radius:999px;
+  background:transparent;color:var(--ds-soft)!important;font-size:10px!important;font-weight:750!important;
+  cursor:pointer;transition:color .18s ease,background .18s ease,box-shadow .18s ease,transform .18s ease;
+  white-space:nowrap;}
+.ds-vl-opcao.is-active {background:linear-gradient(180deg,#01ABBD 0%,#008F9F 100%);
+  color:#fff!important;box-shadow:0 7px 16px rgba(1,171,189,.20);}
+.ds-vl-opcao:hover:not(.is-active) {color:var(--ds-ink)!important;background:rgba(1,171,189,.07);}
+.ds-vl-opcao:active {transform:scale(.97);}
+.ds-vl-root[data-theme="dark"] .ds-vl-seletor {background:var(--ds-surface-2);box-shadow:none;}
+.ds-vl-botao-foco {width:32px;height:32px;flex:0 0 32px;display:grid;place-items:center;padding:0;
+  border:1px solid var(--ds-border);border-radius:10px;background:var(--ds-surface-2);
+  color:var(--ds-soft)!important;cursor:pointer;transition:.18s ease;}
+.ds-vl-botao-foco svg {width:16px;height:16px;fill:none;stroke:currentColor;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.ds-vl-botao-foco:hover {color:var(--ds-strong)!important;border-color:var(--ds-hover-outline);
+  background:rgba(1,171,189,.12);transform:translateY(-1px);
+  box-shadow:0 8px 18px var(--ds-hover-shadow);}
+/* Modal FocusModal PAN — backdrop 12px blur, max 1540x840 viewport-fit. */
+.ds-vl-backdrop {position:fixed;inset:0;z-index:1500;padding:clamp(8px,1.8vh,20px);
+  background:rgba(13,19,23,.45);backdrop-filter:blur(12px) saturate(.92);
+  -webkit-backdrop-filter:blur(12px) saturate(.92);display:grid;place-items:center;
+  animation:ds-vl-fade .18s ease both;}
+.ds-vl-modal {width:min(1540px,97vw);height:min(840px,94vh);min-height:0;
+  display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--ds-border-strong);
+  border-radius:24px;background:var(--ds-surface);
+  box-shadow:0 36px 100px rgba(13,19,23,.30);
+  animation:ds-vl-in .23s cubic-bezier(.2,.8,.2,1) both;}
+.ds-vl-modal-head {flex:0 0 auto;min-height:62px;display:flex;align-items:center;
+  justify-content:space-between;gap:18px;padding:11px 18px 10px;
+  border-bottom:1px solid var(--ds-border);
+  background:linear-gradient(90deg,rgba(1,171,189,.09),rgba(1,171,189,.025),transparent 68%),var(--ds-surface);}
+.ds-vl-modal-head h2 {margin:4px 0 0;font-size:19px;line-height:1.1;letter-spacing:-.35px;}
+.ds-vl-modal-head p {margin:3px 0 0;color:var(--ds-soft);font-size:9px;}
+.ds-vl-fechar {width:38px;height:38px;flex:0 0 auto;display:grid;place-items:center;
+  padding:0;border:1px solid var(--ds-border);border-radius:50%;
+  background:var(--ds-surface-2);cursor:pointer;font-size:25px!important;}
+.ds-vl-modal-corpo {flex:1 1 0;min-height:0;display:flex;padding:clamp(10px,2vw,28px);overflow:hidden;}
+@keyframes ds-vl-fade {from{opacity:0}to{opacity:1}}
+@keyframes ds-vl-in {from{opacity:.5;transform:translateY(8px) scale(.985)}to{opacity:1;transform:none}}
+@media(max-width:1050px) {
+  .ds-vl-cabecalho {flex-wrap:wrap;gap:5px;}
+  .ds-vl-acoes {margin-left:auto;gap:7px;}
+  .ds-vl-opcao {min-width:34px;padding:5px 7px;font-size:10px!important;}
+}
+@media(max-width:620px) {
+  .ds-vl-card {height:320px;padding:15px 13px 13px;border-radius:22px;}
+  .ds-vl-cabecalho h2 {font-size:15px;}
+  .ds-vl-backdrop {padding:8px;}
+  .ds-vl-modal {width:100%;height:min(95vh,840px);border-radius:18px;}
+  .ds-vl-modal-head {gap:6px;padding:12px;flex-wrap:wrap;}
+  .ds-vl-modal-acoes {margin-left:auto;gap:6px;}
+  .ds-vl-modal-corpo {padding:12px;}
+}
+@media(prefers-reduced-motion:reduce) {
+  .ds-vl-opcao,.ds-vl-botao-foco,.ds-vl-card {transition:none;}
+  .ds-vl-backdrop,.ds-vl-modal {animation:none;}
+}

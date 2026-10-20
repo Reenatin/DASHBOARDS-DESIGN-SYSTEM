@@ -4,7 +4,7 @@ Biblioteca enxuta de **códigos visuais reutilizáveis** em React/TypeScript.
 O componente do catálogo é o **mesmo TSX/CSS** usado na integração com um dashboard.
 A demo no StackBlitz recebe dados sintéticos externos; nenhum componente consulta APIs nem inclui mocks.
 
-## Primeiro modelo — Etapa 1 (piloto técnico, aguardando homologação visual)
+## Modelo 01 — Etapa 1 (publicado e homologado em 20/10/2026)
 
 `componentes/grafico-linha-transferencias/` contém um TSX e seu CSS:
 - gráfico Evolução das Transferências ao Humano, visual originalmente homologado na release YDUQS v1.0.0;
@@ -14,9 +14,15 @@ A demo no StackBlitz recebe dados sintéticos externos; nenhum componente consul
 O modelo preserva comportamento do ECharts e não consulta dados do cliente. Consulte a
 [referência técnica](docs/feat/01-grafico-linha-transferencias/referencia-tecnica.md) antes de integrar.
 
+## Modelo 02 — Etapa 2 (ZIP incremental, homologação pendente)
+
+`componentes/grafico-linha-volume/` reúne um TSX e CSS do gráfico **Evolução do Volume URA/IAM**. Animação preservada: a linha/área surge inteira e os marcadores aparecem depois, com cancelamento em alternâncias rápidas. Tooltip original sem linha Recebidas duplicada, guia pontilhada, foco, claro/escuro e responsividade.
+
+A prévia React oferece seletor de modelo; na Etapa 2 também alterna o mock **Dia / Vários dias**. Dados de demonstração em `mock/volume.ts`, nunca dentro do gráfico. Consulte a [referência técnica](docs/feat/02-grafico-linha-volume/referencia-tecnica.md).
+
 ### Visualização no StackBlitz
 
-O repositório público pode ser aberto com a importação do GitHub no StackBlitz **após a publicação autorizada**.
+O repositório público é acessível no [StackBlitz](https://stackblitz.com/github/Reenatin/DASHBOARDS-DESIGN-SYSTEM). O segundo gráfico aparecerá após a publicação/autorização da Etapa 2.
 No ambiente do projeto, o `npm run dev` inicia a prévia React; `npm run build` valida e compila.
 Para uso local: `npm install`, `npm run dev`; para verificações: `npm run typecheck`, `npm test`, `npm run build`.
 
@@ -38,4 +44,4 @@ não equivale a autorização de redistribuição. A fonte Circular Air Pro prec
 licenciada/instalada no dashboard que a utilizar; esta prévia usa fallback.
 
 O Trello controla etapas e histórico, o GitHub o código efetivamente publicado. Neste ZIP:
-**apenas Etapa 1; demais gráficos não foram incluídos.**
+**apenas arquivos novos/alterados da Etapa 2; a Etapa 1 permanece inalterada em seu TSX/CSS.**
